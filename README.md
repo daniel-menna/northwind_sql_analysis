@@ -77,7 +77,7 @@ Configure a new server in PgAdmin:
     docker-compose down -v
     ```
 
-## Relatórios que vamos criar
+## Reports created in this analysis
 
 1. **Revenue Report**
     
