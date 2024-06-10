@@ -1,27 +1,27 @@
-# Analytic Report with SQL - Northwind database
+# Relatório Analítico usando SQL - Northwind database
 
-This project aims to generate an analytical business report from a sales database. 
+Este projeto tem como objetivo gerar um relatório analítico de negócios a partir de um banco de dados de vendas.
 
-The Northwind database contains sales data from a company called Northwind Traders, which imports and exports specialty foods from around the world. In this report, we will primarily focus on extracting insights from revenue, product, and customer data using SQL operations in a PostgreSQL database.
+O banco de dados Northwind contém dados de vendas de uma empresa chamada Northwind Traders, que importa e exporta alimentos especiais de todo o mundo. Neste relatório, vamos nos concentrar principalmente em extrair insights de dados de receita, produto e cliente usando operações SQL em um banco de dados PostgreSQL.
 
-The analyses provided here can benefit companies of all sizes looking to enhance their analytical capabilities. Through these reports, organizations can strategically position themselves in the market, leveraging data-driven decisions to improve their future results.
+As análises apresentadas aqui podem beneficiar empresas de todos os tamanhos que buscam aprimorar suas capacidades analíticas. Através desses relatórios, as organizações podem se posicionar estrategicamente no mercado, aproveitando decisões orientadas por dados para melhorar seus resultados futuros.
 
-It is possible to run this project using only Docker, as it builds both the PostgreSQL database and the client pgAdmin. All instructions are provided in [How to run this project](#how-to-run-this-project) section.
+É possível executar este projeto usando apenas Docker, pois ele constrói tanto o banco de dados PostgreSQL quanto o cliente pgAdmin. As instruções são fornecidas na sessão [Como Rodar Este Projeto](#Como-Rodar-Este-Projeto).
 
-## Table of Contents
-- [Questions we want to answer](#questions-we-want-to-answer)
-    - [Operational Revenue](#operational-revenue)
-        - [How can we observe the operational revenue over the years?](#how-can-we-observe-the-operational-revenue-over-the-years)
-        - [How can we observe the trends of the operational revenue within each year?](#how-can-we-observe-the-trends-of-the-operational-revenue-within-each-year)
-    - [Customers Analysis](#customers-analysis)
-        - [From which customers do we have the main operational revenue?](#from-which-customers-do-we-have-the-main-operational-revenue)
-        - [How can we classify customers to give specific approaches based on their level of demand?](#how-can-we-classify-customers-to-give-specific-approaches-based-on-their-level-of-demand)
-    - [Products Analysis](#products-analysis)
-        - [Which products have the highest demand and revenue?](#which-products-have-the-highest-demand-and-revenue)
+## Lista de Conteúdos
+- [Questões a serem respondidas](#questoes-a-serem-respondidas)
+    - [Relatório Operacional de Vendas](#relatorio-operacional-de-vendas)
+        - [Como visualizar as vendas ao longo dos anos?](#como-visualizar-as-vendas-ao-longo-dos-anos)
+        - [Como visualizar as tendências de venda para cada ano?](#como-visiualizar-as-tendencias-de-venda-para-cada-ano)
+    - [Análise de CLientes](#analise-de-clientes)
+        - [Quais os clientes responsaveis pela maior parte da receita?](#quais-os-clientes-responsaveis-pela-maior-parte-da-receita)
+        - [Como classificar os clientes para abordagens diferenciadas?](#como-classificar-os-clientes-para-abordagens-diferenciadas)
+    - [Análise de Produtos](#analise-de-produto)
+        - [Quais produtos possuem maior faturamento?](#quais-produtos-tem-maior-receita)
     - [Conclusion](#conlusion)
 
-- [Database context](#database-context)
-- [How to run this project](#how-to-run-this-project)
+- [Database](#database)
+- [Como Rodar Este Projeto](#Como-Rodar-Este-Projeto)
 
 -------------------------------
 
