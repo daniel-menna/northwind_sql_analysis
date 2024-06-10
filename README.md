@@ -10,29 +10,28 @@ As análises apresentadas aqui podem beneficiar empresas de todos os tamanhos qu
 
 ## Lista de Conteúdos
 - [Questões a serem respondidas](#questoes-a-serem-respondidas)
-    - [Relatório Operacional de Vendas](#relatorio-operacional-de-vendas)
-        - [Como visualizar as vendas ao longo dos anos?](#como-visualizar-as-vendas-ao-longo-dos-anos)
-        - [Como visualizar as tendências de venda para cada ano?](#como-visiualizar-as-tendencias-de-venda-para-cada-ano)
+    - [Receita Operacional de Vendas](#receita-operacional-de-vendas)
+        - [Como visualizar a receita operacional ao longo dos anos?](#como-visualizar-a-receita-operacional-ao-longo-dos-anos)
+        - [Como visualizar as tendências de receita operacional para cada ano?](#como-visiualizar-as-tendencias-de-receita-operacional-para-cada-ano)
     - [Análise de CLientes](#analise-de-clientes)
         - [Quais os clientes responsaveis pela maior parte da receita?](#quais-os-clientes-responsaveis-pela-maior-parte-da-receita)
         - [Como classificar os clientes para abordagens diferenciadas?](#como-classificar-os-clientes-para-abordagens-diferenciadas)
     - [Análise de Produtos](#analise-de-produto)
         - [Quais produtos possuem maior faturamento?](#quais-produtos-tem-maior-receita)
-    - [Conclusion](#conlusion)
+    - [Conclusao](#conlusao)
 
 - [Database](#database)
 - [Como Rodar Este Projeto](#Como-Rodar-Este-Projeto)
 
 -------------------------------
 
-## Questions we want to answer
+## Questoes a serem respondidas
 
-### Operational Revenue
+### Relatorio Operacional de Vendas
 
-#### How can we observe the operational revenue over the years?
+#### Como visualizar a receita operacional ao longo dos anos?
 
-The query below aggregates the operational revenue by year and calculates the cumulative operational revenue over the same years. It is useful for obtaining an overall trend of the results.
-
+A consulta abaixo agrega a receita operacional por ano e calcula a receita operacional acumulada ao longo dos mesmos anos. É útil para obter uma tendência geral dos resultados.
 ```sql
 CREATE VIEW annual_revenues_analysis AS
 WITH annual_revenues AS (
@@ -60,9 +59,9 @@ FROM annual_revenues;
 | 1997 | 617085.20     | 825169.17                |
 | 1998 | 440623.87     | 1265793.04               |
 
-#### How can we observe the trends of the operational revenue within each year?
+#### Como visualizar as tendências de receita operacional para cada ano?
 
-By using a similar approach to the previous query, we can aggregate the operational revenue by month, calculate the cumulative operational revenue by year (year-to-date), and obtain the total and relative difference between each month. This can be useful for observing trends in small time windows and identifying patterns specific to the business, such as certain parts of the year yielding better results than others.
+Usando uma abordagem semelhante à da consulta anterior, podemos agregar a receita operacional por mês, calcular a receita operacional acumulada por ano (ano até a data) e obter a diferença total e relativa entre cada mês. Isso pode ser útil para observar tendências em pequenas janelas de tempo e identificar padrões específicos do negócio, como determinadas partes do ano que geram melhores resultados do que outras.
 
 ```sql
 CREATE VIEW ytd_revenue_analysis AS
@@ -114,11 +113,11 @@ ORDER BY
 
 
 
-### Customers Analysis
+### Analise de CLientes
 
-#### From which customers do we have the main operational revenue?
+#### Quais os clientes responsaveis pela maior parte da receita?
 
-The query below orders the customers by the total and relative operational revenue they were responsible for over the total time. This is very useful for understanding the concentration of operational revenue and forecasting future results. 
+A consulta abaixo ordena os clientes pela receita operacional total e relativa pela qual eles foram responsáveis ao longo do tempo total. Isso é muito útil para entender a concentração da receita operacional e prever resultados futuros.
 
 ```sql
 CREATE VIEW customers_analysis AS
@@ -151,9 +150,9 @@ ORDER BY
 | Centro comercial Moctezuma      | 100.80        | 0.01       |
 
 
-#### How can we classify customers to give specific approaches based on their level of demand?
+#### Como classificar os clientes para abordagens diferenciadas?
 
-After classifying customers based on operational revenue, we can categorize them by executing the following query.
+Depois de classificar os clientes com base na receita operacional, podemos categorizá-los executando a seguinte consulta.
 
 ```sql
 CREATE VIEW revenue_groups AS 
@@ -185,7 +184,7 @@ ORDER BY
 | Centro comercial Moctezuma   | 100.80        | 0.01                        | 5             |
 
 
-Now only the customers who are in groups 3, 4, and 5 will be selected for a special marketing analysis with them, for example.
+Agora, apenas os clientes que estão nos grupos 3, 4 e 5 serão selecionados para uma análise de marketing especial com eles, por exemplo.
 
 ```sql
 CREATE VIEW revenue_groups_filtered AS
@@ -225,7 +224,7 @@ WHERE
 | Centro comercial Moctezuma         | 100.80        | 0.01                        | 5             |
 
 
-We can also filter customers by specific criteria, like filtering for only UK customers who paid more than 1000 dollars, for example.
+Também podemos filtrar os clientes por critérios específicos, como filtrar apenas os clientes do Reino Unido que pagaram mais de 1000 dólares, por exemplo.
 
 ```sql
 CREATE VIEW uk_customers_who_payed_more_than_1000 AS 
@@ -260,11 +259,11 @@ ORDER BY
 | Consolidated Holdings   | 1719.10       |
 
 
-### Products Analysis
+### Analise de Produtos
 
-#### Which products have the highest demand and revenue?
+#### Quais produtos possuem maior faturamento?
 
-The query below orders the products responsible for generating more operational revenue, as well as their total quantity sold.
+A consulta abaixo ordena os produtos responsáveis por gerar mais receita operacional, assim como a quantidade total vendida.
 
 ```sql
 CREATE VIEW products_analysis AS
@@ -291,77 +290,77 @@ ORDER BY
 | Geitost                           | 1648.12   | 755           |
 | Chocolade                         | 1368.71   | 138           |
 
-### Conlusion
+### Conlusao
 
-In this report, we performed some queries to obtain specific business insights to assist the business. There are always more filters and approaches we can explore, as well as extending the monthly analysis conducted on operational revenue to include customers and products.
+Neste relatório, realizamos algumas consultas para obter insights específicos de negócios para auxiliar a empresa. Sempre existem mais filtros e abordagens que podemos explorar, assim como expandir a análise mensal da receita operacional para incluir clientes e produtos.
 
-## Database context
+## Database
 
-The Northwind database contains sales data for a company called Northwind Traders, which imports and exports specialty foods from around the world.
+O banco de dados Northwind contém dados de vendas de uma empresa chamada Northwind Traders, que importa e exporta alimentos especiais de todo o mundo.
 
-The Northwind database is an ERP with data on customers, orders, inventory, purchases, suppliers, shipments, employees, and accounting.
+O banco de dados Northwind é um ERP com dados sobre clientes, pedidos, inventário, compras, fornecedores, remessas, funcionários e contabilidade.
 
-The Northwind dataset includes sample data for the following:
+O conjunto de dados Northwind inclui dados de exemplo para os seguintes itens:
 
-* **Suppliers**: Northwind's suppliers and vendors
-* **Customers**: Customers who purchase products from Northwind
-* **Employees**: Details of Northwind Traders' employees
-* **Products**: Product information
-* **Shippers**: Details of carriers that ship the traders' products to end customers
-* **Orders** and **Order Details**: Sales order transactions occurring between customers and the company
+* **Suppliers**: fornecedores e vendedores da Northwind
+* **Customers**: clientes que compraram produtos da Northwind
+* **Employees**: Detalhes sobre os vendedores da Northwind
+* **Products**: Informações dos produtos
+* **Shippers**: Informações sobre os transportadores
+* **Orders** e **Order Details**: Transações de vendas e ordens de compra dos clientes para a Northwind
 
-The Northwind database includes 14 tables, and the relationships between the tables are shown in the following entity relationship diagram.
+O banco de dados Northwind inclui 14 tabelas, e os relacionamentos entre as tabelas são mostrados no diagrama de relacionamento de entidades a seguir.
 
 ![](pics/northwind-er-diagram.png)
 
-## How to run this project
+## Como rodar este projeto
 
-### Manually
+### Manualmente
 
 After connecting to your own database, use the [`northwind.sql`](northwind.sql) file to populate the database by copying the script, pasting it into the query tool, and running it.
 
 ### With Docker
 
-Its is required to have docker and docker compose intalled to be able to run this project.
+É necessário ter o Docker e o Docker Compose instalados para poder executar este projeto.
 
 - [Start with Docker](https://www.docker.com/get-started/)
 - [Install Docker Compose](https://docs.docker.com/compose/install/)
 
-Once we have docker avaiable, we do the following steps:
+Tendo o Docker instalado, siga os seguintes passos:
 
-1. Clone the repository locally.
+1. Clone o repositorio localmente.
 ```bash 
 git clone https://github.com/lealre/northwind-analytics-sql.git
 ```
 
-2. Access the project folder.
+2. Acesse a pasta do projeto.
 ```bash
 cd northwind-analytics-sql
 ```
 
-3. Build the Docker container.
+3. Crie o Docker container.
 ```bash
 docker compose up -d
 ```
 
-The `-d` flag is used to run the container detached from the terminal.
+O `-d` flag é usado para executar o contêiner em segundo plano, desconectado do terminal.
 
-4. Access pgAdmin at http://localhost:5050/
+4. Acesse o pgAdmin em http://localhost:5050/
 
-5. Set the master password (when accessing for the first time).
+5. Configure o master password (utilizado quando acessar pela primeira vez apenas).
 
 <img src="pics/1.png"  width=500>
 
-6. Right-click on the server to connect pgAdmin to the database.
+6. Clique com o botão direito para conectar o pgAdmin com o database.
 
 <img src="pics/2.png"  width=500>
 
 
-7. Set the server name (it can be any name you want).
+7. Defina um nome para o servidor (a sua escolha).
 
 <img src="pics/3.png"  width=500>
 
-8. Connect to the database using the credentials we set in the [`docker-compose.yaml`](docker-compose.yaml) file.
+8. Conecte com a base de dados conforme as credencias setadas no [`docker-compose.yaml`](docker-compose.yaml) file.
 
 `Host name`: `db`
 
@@ -369,4 +368,4 @@ The `-d` flag is used to run the container detached from the terminal.
 
 <img src="pics/4.png"  width=500>
 
-After completing this final step, you will be able to access the Northwind database, as well as the views created in the report.
+Após completar este último passo, será possível acessas a base de dado e visualizar os schemas utilizado nos relatórios.
